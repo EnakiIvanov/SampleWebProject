@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+		xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<link href="/webjars/bootstrap/4.6.0/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="../static/css/main.css" th:href="@{/css/main.css}"> 
+<link rel="stylesheet" type="text/css" href="../static/css/profile/profile.css" th:href="@{/css/profile/profile.css}"> 
+<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/jquery-validation/1.19.3/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/js/profile/profile.js" th:src="@{/js/profile/profile.js}"></script>
+<meta charset="UTF-8">
+	<title>Profile</title>
+</head>
+	<body>
+
+	<div class="pos-f-t">
+	  <div class="collapse" id="navbarToggleExternalContent">
+	    <div class="bg-light-pink p-4">
+	      <a class="btn btn-outline-dark" th:href="@{/home}"><h4>Home</h4></a>
+	      <a class="btn btn-outline-dark" th:href="@{/students/getAll}"><h4>Students</h4></a>
+	    </div>
+	  </div>
+	  <nav class="navbar navbar-dark bg-pink">
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	 	
+	    <a class="btn btn-outline-dark" th:href="${#request.remoteUser} ? @{/profile} : @{/home}"><h4 th:text="${#request.remoteUser} ? ${#request.remoteUser} : 'Guest'" id="isUserLogged"></h4></a>
+	    
+	    <a class="btn btn-outline-dark" th:href="${#request.remoteUser} ? @{/logout} : @{/login}"><h5 th:text="${#request.remoteUser} ? Logout : Login"></h5></a>
+	  </nav>
+	</div>
+
+	<div class="profile-page">
+	  <div class="navigationMenu">
+	     	<a href="#" class="btn btn-pink" id="editUser">Edit Profile</a>
+	     	<a href="#" class="btn btn-pink" id="changeUserRole" sec:authorize="hasRole('ADMIN')">Change Roles</a>
+	  </div>
+	  <div class="form">
+	    <form class="editUserData-form" th:action="@{/profile/edit}" method="get" id="registerForm">
+	      <input type="hidden" id="userId" name="id"/>
+	   	  <label for="username">Current username: <span th:text="${#request.remoteUser}"></span></label>   	  
+	      <input type="text" placeholder="Username" id="username" name="username"/>
+	      
+	      <label for="email">Current email: <span id="currentUserEmail"></span></label>
+	      <input type="text" placeholder="Email address" id="email" name="email"/>
+	      
+	      <input type="password" placeholder="Password" id="password" name="password"/>
+	      <button type="submit" id="btnEdit">Edit</button>
+	    </form>
+	    <form class="usersOptions-form">
+	     <table class="table table-stripped">
+		  <thead>
+		    <tr>
+		      <th scope="col">Username</th>
+		      <th scope="col">Email</th>
+		      <th scope="col">Role</th>
+		      <th scope="col">Enabled</th>
+		      <th class="text-center">Change Role</th>
+		      <th>Disable</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		     <tr th:each="us : ${users}">										
+		        <td th:text="${us.username}"></td>
+		        <td th:text="${us.email}"></td>
+		        <td th:text="${us.role}"></td>
+		        <td th:text="${us.enabled} ? true : false"></td>
+		        <td>
+		         <a th:href="@{/profile/changeRole/(id=${us.id}, role='ROLE_USER')}" th:if="${us.role == 'ROLE_ADMIN'}" class="btn btn-warning" id="roleBtn">USER</a>
+		         <a th:href="@{/profile/changeRole/(id=${us.id}, role='ROLE_ADMIN')}" th:if="${us.role == 'ROLE_USER'}" class="btn btn-warning" id="roleBtn">ADMIN</a>
+		        </td> 
+		        <td>
+		         <a th:href="@{/profile/disable/(id=${us.id}, enable= 0)}" th:if="${us.enabled == 1}" class="btn btn-outline-danger" id="banBtn">BAN</a>
+		         <a th:href="@{/profile/disable/(id=${us.id}, enable= 1)}" th:if="${us.enabled == 0}" class="btn btn-outline-danger" id="unBanBtn">UNBAN</a>
+		        </td> 
+		     </tr>
+		  </tbody>
+		</table>     
+	    </form>   
+	  </div>
+	</div>
+	
+	</body>
+</html>

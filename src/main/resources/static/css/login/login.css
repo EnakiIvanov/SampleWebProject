@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 460px;
+  padding: 10% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border: 2px solid #ff00c1;
+  border-radius: 1.25rem;
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #FFF;
+  width: 100%;
+  border: 3px solid #ec8db9;
+  border-radius: 0.55rem;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #ec8db9;
+  width: 100%;
+  border: 3px solid #ec8db9;
+  border-radius: 0.55rem;
+  padding: 10px;
+  color: #98217f;
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #ffe8ff;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 15px;
+}
+.form .message a {
+  color: #98217f;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+
+.btn-pink{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #ec8db9;
+  border-color: #ec8db9;
+  border-radius: 0.55rem;
+  color: #98217f;
+  font-weight: 600;
+}
+
+.btn-pink:hover,.btn-pink:active,.btn-pink:focus {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #ffe8ff;
+  border-color: #ec8db9;
+  border-radius: 0.55rem;
+  color: #98217f;
+  font-weight: 600;
+}
+
+#modalMsg{
+  font-family: "Roboto", sans-serif;
+  color: #98217f;
+  font-weight: 600;
+}
+
+#ModalLabel{
+  font-family: "Roboto", sans-serif;
+  color: #98217f;
+  font-weight: 600;
+}

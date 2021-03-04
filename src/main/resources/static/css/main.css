@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+html, body{
+	background-color: #ffffff;
+	height: auto;
+}
+
+.bg-pink{
+	background-color: #ec8db9;
+}
+
+.bg-light-pink{
+	background-color: #f9b6de;
+}
+
+.btn-outline-dark{
+	color: #98217f;
+	border-color: #98217f;
+}
+
+.btn-outline-dark:hover,.btn-outline-dark:active,.btn-outline-dark:focus {
+  background: #FFF;
+  border-color: #ec8db9;
+  color: #98217f;
+}
+
+.navbar-toggler{
+	border: 1px solid #ffe8ff;	
+}
+
+.navbar-dark .navbar-toggler{
+	border-color: #98217f;
+}
+
+.table{
+	width: auto;
+    margin: 0 auto;
+    color: #212529;
+}
+
+.homeTitle{
+	text-align: center;
+	font-size: 7rem;
+    font-weight: 600;
+    color: #98217f;
+    margin-top: 1em;
+}

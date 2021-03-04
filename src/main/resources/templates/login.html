@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="/webjars/bootstrap/4.6.0/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="../static/css/login/login.css" th:href="@{/css/login/login.css}"> 
+<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/jquery-validation/1.19.3/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/js/login/login.js" th:src="@{/js/login/login.js}"></script>
+<script type="text/javascript" src="../static/js/login/signup-form.js" th:src="@{/js/login/signup-form.js}"></script>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+	<div class="login-page">
+	  <div class="form">
+	    <form class="register-form" th:action="@{/register}" method="post" id="registerForm">
+	      <input type="text" placeholder="Username" id="rUsername" name="username"/>
+	      <input type="text" placeholder="Email address" id="email" name="email"/>
+	      <input type="password" placeholder="Password" id="rPassword" name="password"/>
+	      <input type="password" placeholder="Retype Password" id="rePassword" name="rePassword"/>
+	      <button type="submit" id="btnCreate">Create</button>
+	      <p class="message">Already registered? <a href="#" id="signIn">Sign In</a></p>
+	    </form>
+	    <form class="login-form" th:action="@{/login}" method="post">
+	      <div th:if="${param.error}" class="alert alert-danger">Invalid username and password.</div>
+	      <div th:if="${param.logout}" class="alert alert-success">You have been logged out.</div>
+	      <input type="text" placeholder="Username" id="username" name="username"/>
+	      <input type="password" placeholder="Password" id="password" name="password"/>
+	      <button type="submit">Login</button>
+	      <p class="message">Not registered? <a href="#">Create an account</a></p>
+	    </form>
+	  </div>
+	</div>
+
+	<div class="modal fade" id="successfullRegistration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="ModalLabel">Success</h5>
+	      </div>
+	      <div class="modal-body" id="modalMsg">
+	        Your account has been successfully created.
+	      </div>
+	      <div class="modal-footer">
+	        <a href="#" class="btn btn-pink" id="modalOKbtn">OK</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+</body>
+</html>
