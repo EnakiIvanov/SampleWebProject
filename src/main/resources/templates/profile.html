@@ -9,6 +9,7 @@
 <script type="text/javascript" src="/webjars/jquery-validation/1.19.3/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/4.6.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../static/js/profile/profile.js" th:src="@{/js/profile/profile.js}"></script>
+<script type="text/javascript" src="../static/js/profile/userDataUpdateForm.js" th:src="@{/js/profile/userDataUpdateForm.js}"></script>
 <meta charset="UTF-8">
 	<title>Profile</title>
 </head>
@@ -26,7 +27,7 @@
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
 	 	
-	    <a class="btn btn-outline-dark" th:href="${#request.remoteUser} ? @{/profile} : @{/home}"><h4 th:text="${#request.remoteUser} ? ${#request.remoteUser} : 'Guest'" id="isUserLogged"></h4></a>
+	    <a class="btn btn-outline-dark" th:href="${#request.remoteUser} ? @{/profile} : @{/home}"><h4 th:text="${#request.remoteUser} ? ${#request.getRemoteUser} : 'Guest'" id="isUserLogged"></h4></a>
 	    
 	    <a class="btn btn-outline-dark" th:href="${#request.remoteUser} ? @{/logout} : @{/login}"><h5 th:text="${#request.remoteUser} ? Logout : Login"></h5></a>
 	  </nav>
@@ -38,7 +39,7 @@
 	     	<a href="#" class="btn btn-pink" id="changeUserRole" sec:authorize="hasRole('ADMIN')">Change Roles</a>
 	  </div>
 	  <div class="form">
-	    <form class="editUserData-form" th:action="@{/profile/edit}" method="get" id="registerForm">
+	    <form class="editUserData-form" th:action="@{/profile/edit}" method="put" id="editUserDataForm">
 	      <input type="hidden" id="userId" name="id"/>
 	   	  <label for="username">Current username: <span th:text="${#request.remoteUser}"></span></label>   	  
 	      <input type="text" placeholder="Username" id="username" name="username"/>

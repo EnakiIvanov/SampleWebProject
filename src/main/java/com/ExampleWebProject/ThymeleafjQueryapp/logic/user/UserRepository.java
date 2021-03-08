@@ -12,8 +12,14 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 	@Query("SELECT count(1) FROM for_testing.users WHERE email = :email")
 	boolean existsByEmail(@Param("email") String email);
 	
+	@Query("SELECT count(1) FROM for_testing.users WHERE email = :email AND id != :id")
+	boolean existsByEmail(@Param("email") String email, @Param("id") int id);
+	
 	@Query("SELECT count(1) FROM for_testing.users WHERE username = :username")
 	boolean existsByUsername(@Param("username") String username);
+	
+	@Query("SELECT count(1) FROM for_testing.users WHERE username = :username AND id != :id")
+	boolean existsByUsername(@Param("username") String username, @Param("id") int id);
 	
 	@Query("SELECT email FROM for_testing.users WHERE username = :username")
 	String getEmailByUsername(@Param("username") String username);

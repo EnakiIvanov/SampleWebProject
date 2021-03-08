@@ -28,9 +28,17 @@ public class UserServiceImpl implements UserService {
 		return userRepo.existsByEmail(email) ? false : true;
 	}
 	
+	public boolean checkIfUserExist(String email, int id) {
+		return userRepo.existsByEmail(email, id) ? false : true;
+	}
+	
 	@Override
 	public boolean checkIfUsernameExist(String username) {
 		return userRepo.existsByUsername(username) ? false : true;
+	}
+	
+	public boolean checkIfUsernameExist(String username, int id) {
+		return userRepo.existsByUsername(username, id) ? false : true;
 	}
 
 	private String encodePassword(String password) {

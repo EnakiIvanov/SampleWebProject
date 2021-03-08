@@ -1,6 +1,9 @@
 package com.ExampleWebProject.ThymeleafjQueryapp.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,9 +46,13 @@ public class ProfileController {
 	@RequestMapping(value ="/edit", method = {RequestMethod.PUT, RequestMethod.GET})
 	public String editUserData(User user) {
 		usi.register(user);
+		
+		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
 		return "redirect:/profile";
 	}
-	
+
 	@RequestMapping("/getLoggedUserEmail")
 	@ResponseBody
 	public String getLoggedUserEmail(String username) {
@@ -57,5 +64,17 @@ public class ProfileController {
 	public Integer getUserId(String username) {
 		
 		return userRepo.getUserIdByUsername(username);
+	}
+	
+	@RequestMapping("/checkUsername")
+	@ResponseBody
+	public boolean checkUsername(String username, int id) {
+		return usi.checkIfUsernameExist(username, id);
+	}
+	
+	@RequestMapping("/checkEmail")
+	@ResponseBody
+	public boolean checkEmail(String email, int id) {
+		return usi.checkIfUserExist(email, id);
 	}
 }
